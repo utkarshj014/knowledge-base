@@ -92,12 +92,12 @@ A hash function earns the "cryptographic" qualifier by satisfying three resistan
 
 **Why it matters:** This prevents targeted substitution attacks. An attacker who intercepts a trusted file — a software update binary, a signed webhook payload, a verified document — cannot craft a malicious replacement that produces the same hash. The integrity check will catch the swap.
 
-The key difference from pre-image resistance: here the attacker *knows* the original input and is trying to forge a specific twin for it.
+The key difference from pre-image resistance: here the attacker _knows_ the original input and is trying to forge a specific twin for it.
 
 ### 3. Collision Resistance (Systemic Substitution Defense)
 
 > [!IMPORTANT]
-> **The Rule:** Without any fixed starting point, it is computationally impossible to discover *any* pair of distinct inputs `Xᴬ` and `Xᴮ` that produce an identical output hash (`Hash(Xᴬ) = Hash(Xᴮ)` where `Xᴬ != Xᴮ`).
+> **The Rule:** Without any fixed starting point, it is computationally impossible to discover _any_ pair of distinct inputs `Xᴬ` and `Xᴮ` that produce an identical output hash (`Hash(Xᴬ) = Hash(Xᴮ)` where `Xᴬ != Xᴮ`).
 
 **Why it matters:** This prevents a more sophisticated attack. An attacker creates two different documents simultaneously — say, a benign contract and a fraudulent one — that happen to produce the same hash. They get the benign version officially signed, then swap in the fraudulent version. Since both hash identically, the signature validates on both.
 
@@ -107,10 +107,22 @@ Collision resistance is strictly stronger than second pre-image resistance. If c
 
 ## Attack Pattern Summary
 
-| Pillar | Input Constraint | Attacker Strategy | System Threat |
-|---|---|---|---|
-| **Pre-image** | Output `H` is fixed | Guess/brute-force the input | Information leakage, password decryption |
-| **Second Pre-image** | Input `X₁` is fixed | Forge a twin for a specific target | Payload tampering, file spoofing |
-| **Collision** | No inputs are fixed | Manufacture a matching pair to swap | Token/contract substitution, signature bypass |
+| Pillar               | Input Constraint    | Attacker Strategy                   | System Threat                                 |
+| -------------------- | ------------------- | ----------------------------------- | --------------------------------------------- |
+| **Pre-image**        | Output `H` is fixed | Guess/brute-force the input         | Information leakage, password decryption      |
+| **Second Pre-image** | Input `X₁` is fixed | Forge a twin for a specific target  | Payload tampering, file spoofing              |
+| **Collision**        | No inputs are fixed | Manufacture a matching pair to swap | Token/contract substitution, signature bypass |
 
 The constraints tighten from top to bottom. Pre-image gives the attacker the least freedom (only an output to work backwards from). Collision gives the most (free choice of both inputs). A cryptographic hash function must resist all three.
+
+---
+
+## 🌟 Support & Contribute
+
+If you found this article helpful, please consider:
+
+- **Starring** ⭐ the [knowledge-base](https://github.com/utkarshj014/knowledge-base) repository to show support.
+- **Following** 👥 me [utkarshj014](https://github.com/utkarshj014) on GitHub.
+- **Watching** 👀 the repository for updates on new articles.
+- **Contributing** 🛠️ by opening a Pull Request with edits or additions.
+- **Sharing** 📢 this guide with other developers who might benefit from it.
