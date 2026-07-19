@@ -29,17 +29,42 @@ Every hash function — whether cryptographic or not — operates on three struc
 
 A hash function contains no randomness. Feeding the exact same input will yield the identical output every single time, on any system, in any programming language. This is what makes hashes useful for verification — you can independently compute the hash and compare.
 
+```bash
+# Hash is computed identically every time:
+$ printf "hello" | sha256sum
+2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+```
+
 ### 2. Fixed-Length Compression
 
-The function accepts an input of any arbitrary size — a single character, a JSON payload, or a multi-gigabyte file — and maps it to a strictly fixed output length. SHA-256, for example, always outputs exactly 256 bits regardless of input size.
+The function accepts an input of any arbitrary size — a single character, a JSON payload, or a multi-gigabyte file — and maps it to a strictly fixed output length. SHA-256, for example, always outputs exactly 256 bits (64 hexadecimal characters) regardless of input size.
 
 This is compression in the mathematical sense: an infinite input space is mapped to a finite output space. That mapping is what makes hash functions useful for indexing, deduplication, and integrity checking.
+
+```bash
+# Short text (5 bytes) -> 64 hex characters (32 bytes / 256 bits)
+$ printf "hello" | sha256sum
+2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+
+# Large input (1,000,000 characters) -> same 64 hex characters
+$ printf "%1000000s" "x" | sha256sum
+4a5e378c2e64627b0f69d72111d4d38c6bf839a9cf4e4604e38e6e5898851410  -
+```
 
 ### 3. The Avalanche Effect
 
 The internal bit-shifting and mixing logic ensure that the tiniest modification to the input — changing a single bit, a single character, or a letter's case — produces a completely different output. The two resulting hashes share no visible pattern.
 
 For example, hashing `hello` and `Hello` through SHA-256 produces two entirely unrelated digests. This property prevents attackers from making educated guesses about an input based on a known similar input's hash.
+
+```bash
+# Changing a single character ('h' -> 'H') completely scrambles the output:
+$ printf "hello" | sha256sum
+2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+
+$ printf "Hello" | sha256sum
+185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969  -
+```
 
 ---
 
@@ -55,13 +80,15 @@ A hash function earns the "cryptographic" qualifier by satisfying three resistan
 
 ### 1. Pre-image Resistance (One-Way Lock)
 
-**The rule:** Given an output hash `H`, it is computationally impossible to determine any original input `X` such that `Hash(X) = H`.
+> [!IMPORTANT]
+> **The Rule:** Given an output hash `H`, it is computationally impossible to determine any original input `X` such that `Hash(X) = H`.
 
 **Why it matters:** This is what makes password hashing work. Even if an attacker steals a database of hashed passwords, they cannot reverse-engineer the plaintext passwords from the stored hashes. They're forced into brute-force guessing, which a strong hash function makes prohibitively expensive.
 
 ### 2. Second Pre-image Resistance (Targeted Forgery Defense)
 
-**The rule:** Given a known input `X₁` and its output `H`, it is computationally impossible to find a different input `X₂` such that `Hash(X₁) = Hash(X₂)`.
+> [!IMPORTANT]
+> **The Rule:** Given a known input `X₁` and its output `H`, it is computationally impossible to find a different input `X₂` such that `Hash(X₁) = Hash(X₂)` (where `X₁ != X₂`).
 
 **Why it matters:** This prevents targeted substitution attacks. An attacker who intercepts a trusted file — a software update binary, a signed webhook payload, a verified document — cannot craft a malicious replacement that produces the same hash. The integrity check will catch the swap.
 
@@ -69,7 +96,8 @@ The key difference from pre-image resistance: here the attacker *knows* the orig
 
 ### 3. Collision Resistance (Systemic Substitution Defense)
 
-**The rule:** Without any fixed starting point, it is computationally impossible to discover *any* pair of distinct inputs `Xᴬ` and `Xᴮ` that produce an identical output hash.
+> [!IMPORTANT]
+> **The Rule:** Without any fixed starting point, it is computationally impossible to discover *any* pair of distinct inputs `Xᴬ` and `Xᴮ` that produce an identical output hash (`Hash(Xᴬ) = Hash(Xᴮ)` where `Xᴬ != Xᴮ`).
 
 **Why it matters:** This prevents a more sophisticated attack. An attacker creates two different documents simultaneously — say, a benign contract and a fraudulent one — that happen to produce the same hash. They get the benign version officially signed, then swap in the fraudulent version. Since both hash identically, the signature validates on both.
 
