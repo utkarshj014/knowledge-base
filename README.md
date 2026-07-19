@@ -32,3 +32,15 @@ To ensure all documentation is clean, readable, and highly accessible, every art
 - **Visual Elegance**: Diagrams are centered and styled via HTML to ensure proper margins, rounded corners (`border-radius: 8px`), and a clean, responsive layout.
 - **Scannability**: Key rules, mathematical formulas, and critical takeaways are highlighted using native GitHub-style callouts (`> [!IMPORTANT]`).
 - **Safe Copying**: All terminal commands and bash blocks are presented prompt-free.
+
+---
+
+## 🌟 Support & Contribute
+
+If you find this handbook helpful, please consider:
+
+- **Starring** ⭐ this repository to help others discover it.
+- **Following** 👥 me [utkarshj014](https://github.com/utkarshj014) on GitHub.
+- **Watching** 👀 the repository to get updates on new content.
+- **Contributing** 🛠️ by opening a Pull Request with fixes or additions.
+- **Sharing** 📢 this project with other developers who want to learn fundamentally.
