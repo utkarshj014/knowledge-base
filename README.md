@@ -1,6 +1,9 @@
 # Engineering Knowledge Base
 
-This is my personal handbook made available to the public so anyone can benefit from it. It documents my own learnings and explorations as an engineer, structured to help other engineers learn things fundamentally and conceptually, from core concepts up to advanced topics.
+This repository is my personal engineering knowledge base, made public so anyone can benefit from it. It documents my learnings and explorations as an engineer, organized to help readers learn things fundamentally and conceptually, build strong mental models, and understand systems from core concepts to advanced topics.
+
+> [!NOTE]
+> This repository is continuously updated as I learn. Articles may be revised over time to improve accuracy, clarity, or reflect better understanding.
 
 ---
 
@@ -9,7 +12,8 @@ This is my personal handbook made available to the public so anyone can benefit 
 ```
 knowledge-base/
 ├── .github/              # Shared assets and configuration
-│   └── assets/           # Visual diagrams and infographics
+│   └── assets/           # Visual diagrams categorized by topic
+│       └── security/     # Diagrams for cryptographic & security content
 └── docs/                 # Categorized technical articles
     └── security/         # Cryptography, authentication, and protocols
 ```
