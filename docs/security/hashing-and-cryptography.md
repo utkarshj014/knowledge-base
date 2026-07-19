@@ -31,8 +31,8 @@ A hash function contains no randomness. Feeding the exact same input will yield 
 
 ```bash
 # Hash is computed identically every time:
-$ printf "hello" | sha256sum
-2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+printf "hello" | sha256sum
+# Output: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 *-
 ```
 
 ### 2. Fixed-Length Compression
@@ -43,12 +43,12 @@ This is compression in the mathematical sense: an infinite input space is mapped
 
 ```bash
 # Short text (5 bytes) -> 64 hex characters (32 bytes / 256 bits)
-$ printf "hello" | sha256sum
-2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+printf "hello" | sha256sum
+# Output: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 *-
 
 # Large input (1,000,000 characters) -> same 64 hex characters
-$ printf "%1000000s" "x" | sha256sum
-4a5e378c2e64627b0f69d72111d4d38c6bf839a9cf4e4604e38e6e5898851410  -
+printf "%1000000s" "x" | sha256sum
+# Output: 4a5e378c2e64627b0f69d72111d4d38c6bf839a9cf4e4604e38e6e5898851410 *-
 ```
 
 ### 3. The Avalanche Effect
@@ -59,11 +59,11 @@ For example, hashing `hello` and `Hello` through SHA-256 produces two entirely u
 
 ```bash
 # Changing a single character ('h' -> 'H') completely scrambles the output:
-$ printf "hello" | sha256sum
-2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824  -
+printf "hello" | sha256sum
+# Output: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 *-
 
-$ printf "Hello" | sha256sum
-185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969  -
+printf "Hello" | sha256sum
+# Output: 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969 *-
 ```
 
 ---
