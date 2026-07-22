@@ -13,8 +13,10 @@ This repository is my personal engineering knowledge base, made public so anyone
 knowledge-base/
 ├── .github/              # Shared assets and configuration
 │   └── assets/           # Visual diagrams categorized by topic
+│       ├── backend/      # Diagrams for backend & infrastructure content
 │       └── security/     # Diagrams for cryptographic & security content
 └── docs/                 # Categorized technical articles
+    ├── backend/          # Server architecture, shutdown, and runtime mechanics
     └── security/         # Cryptography, authentication, and protocols
 ```
 
@@ -25,6 +27,10 @@ knowledge-base/
 ### 🔐 Security & Cryptography
 
 - [Hashing & Cryptography](docs/security/hashing-and-cryptography.md) — A comprehensive explanation of deterministic hash functions, the avalanche effect, and the three pillars of cryptographic hash resistance.
+
+### ⚙️ Backend & Infrastructure
+
+- [Graceful Shutdown Mechanics](docs/backend/graceful-shutdown-mechanics.md) — OS-level process lifecycle, signals, server draining, the Keep-Alive trap, and the immutable four-phase shutdown sequence for production Node.js applications.
 
 ---
 
