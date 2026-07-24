@@ -13,10 +13,11 @@ This repository is my personal engineering knowledge base, made public so anyone
 knowledge-base/
 ├── .github/              # Shared assets and configuration
 │   └── assets/           # Visual diagrams categorized by topic
-│       ├── backend/      # Diagrams for backend & infrastructure content
-│       └── security/     # Diagrams for cryptographic & security content
+│       ├── backend/          # Diagrams for backend & infrastructure content
+│       ├── backend-systems/  # Diagrams for identifiers & system design content
+│       └── security/         # Diagrams for cryptographic & security content
 └── docs/                 # Categorized technical articles
-    ├── backend/          # Server architecture, shutdown, and runtime mechanics
+    ├── backend/          # Server architecture, identifiers, and runtime mechanics
     └── security/         # Cryptography, authentication, and protocols
 ```
 
@@ -31,6 +32,7 @@ knowledge-base/
 ### ⚙️ Backend & Infrastructure
 
 - [Graceful Shutdown Mechanics](docs/backend/graceful-shutdown-mechanics.md) — OS-level process lifecycle, signals, server draining, the Keep-Alive trap, and the immutable four-phase shutdown sequence for production Node.js applications.
+- [Unique Identifiers: UUID vs CUID](docs/backend/unique-identifiers-uuid-and-cuid.md) — UUIDv4, UUIDv7, and CUID2 compared across database performance, cryptographic security, B-Tree indexing mechanics, and the Dual-ID pattern for production architectures.
 
 ---
 
